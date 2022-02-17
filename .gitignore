@@ -1,0 +1,24 @@
+// no push repo frontend
+frontend
+
+// no push fichier
+node_modules
+
+// no push contenu repo image
+*.png
+*.jpeg
+*.jpg
+*.gif
+*.svg
+*.apng
+*.avif
+*.jfif
+*pjpeg
+*pjp
+*.webp
+
+// no push variables d'environnement mongodb
+.env
+
+// no push fichier vs code
+.vscode
