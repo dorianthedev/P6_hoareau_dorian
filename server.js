@@ -1,4 +1,7 @@
+// importer le package http de node.js pour avoir les outils pour créer le server
 const http = require('http');
+
+// importer application app.js
 const app = require('./app');
 
 const normalizePort = val => {
@@ -12,7 +15,7 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT ||'3000');
 app.set('port', port);
 
 const errorHandler = error => {
@@ -35,6 +38,11 @@ const errorHandler = error => {
   }
 };
 
+
+// la méthode createserver prend en argument la fonction 
+//qui sera appelé à chaque requête reçu par le server.
+//Ici les fonctions seront dans app.js
+
 const server = http.createServer(app);
 
 server.on('error', errorHandler);
@@ -44,4 +52,6 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+
+//le server écoute les requêtes sur le port
 server.listen(port);
