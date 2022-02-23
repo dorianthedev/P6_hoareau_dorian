@@ -2,10 +2,10 @@
 const express = require('express');
 
 //importation de moragn (logger http)
-const morgan = require('morgan')
+const morgan = require('morgan');
 
 //importation fichiers db pour connexion base de donnée mongoDB avec package mongoose
-const mongoose = require('./db/db')
+const mongoose = require('./db/db');
 
 // pour créer une application express
 const app = express();
