@@ -3,14 +3,21 @@ const express = require('express');
 
 //importation de moragn (logger http)
 const morgan = require('morgan');
-// logger les requetes et les reponses
-app.use(morgan('dev'));
+
 
 //importation fichiers db pour connexion base de donnée mongoDB avec package mongoose
 const mongoose = require('./db/db');
 
 // pour créer une application express
 const app = express();
+
+//importation de body-parser
+const bodyParser = require('body-parser')
+
+// logger les requetes et les reponses
+app.use(morgan('dev'));
+
+
 
 // gérer les problèmes de CORS ( cross-origin request sharing ) = sécurity
 // autorisation à tout le monde d'accès à la web api, pas de rejet
@@ -21,6 +28,9 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+
+//transformer le corps (body) en json objet javascript réutilisables
+app.use(bodyParser.json())
 
 
 // test si le server réponds
