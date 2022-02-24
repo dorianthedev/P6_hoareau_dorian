@@ -1,12 +1,17 @@
+//---------------Importation----------------//
 //importation de express
 const express = require('express');
 
 //importation de moragn (logger http)
 const morgan = require('morgan');
 
-
 //importation fichiers db pour connexion base de donnée mongoDB avec package mongoose
 const mongoose = require('./db/db');
+
+//importation des routes
+const userRoutes = require('./routes/user')
+
+//-----------------------------------------//
 
 // pour créer une application express
 const app = express();
@@ -30,12 +35,12 @@ app.use((req, res, next) => {
 });
 
 //transformer le corps (body) en json objet javascript réutilisables
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 // La route authentification (auth)
 // api/auth = uri = route générale
-app.use ('/api/auth', la suite dans la route)
+app.use('/api/auth', userRoutes);
 
 
 // exportation de app.js pour y accéder depuis un autre fichier
