@@ -22,6 +22,9 @@ const bodyParser = require('body-parser')
 // logger les requetes et les reponses
 app.use(morgan('dev'));
 
+// debugger mongoose //
+mongoose.set('debug', true);
+
 
 
 // gérer les problèmes de CORS ( cross-origin request sharing ) = sécurity

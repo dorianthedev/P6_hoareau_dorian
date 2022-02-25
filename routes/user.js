@@ -2,11 +2,13 @@
 const express = require('express')
 //importation du controllers/user.js
 const userController = require('../controllers/user');
+//importation du middleware/password
+const password = require('../middleware/password')
 //la fonction router
 const router = express.Router();
 
 //la route (endpoint) signup
-router.post("/signup", userController.signup);
+router.post("/signup", password, userController.signup);
 
 //la route login
 
