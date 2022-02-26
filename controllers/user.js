@@ -2,6 +2,8 @@
 const bcrypt = require('bcrypt');
 // importation de cryptojs pour chiffrer le mail
 const cryptojs = require('crypto-js')
+//importation de jsonwebtoken
+const jwt = require('jsonwebtoken')
 // importation du models de la base de donnée User.js
 const User = require('../models/User');
 // importation pour utiliser les variables d'environnement
@@ -62,15 +64,27 @@ exports.login = (req, res, next) => {
                 if (!controlPassword) {
                     return res.status(401).json({error : "Le mot de passe est incorrect"})
                 }
+                // si le password est correct
+                // envoie dans la res du serveur userId et du token d'authentification
+                res.status(200).json({
+                    // encodage de l'userId pour la création d'un nouveau objet (objet et userId seront liés)
+                    userId: user._id,
+                    token: jwt.sign(
+                        //3 arguments
+                        {userId: user._id},
+                        `${process.env.JWT_KEY_TOKEN}`,
+                        {expiresIn: "12h"}
+                        
+                    )
+                    
+                
+                })
+                
             })
 
             .catch(error => res.status(500).json({ error }));
     })
-
-
-
     .catch(error => res.status(500).json({ error }));
-
 
 };
 
