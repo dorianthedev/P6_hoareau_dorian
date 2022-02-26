@@ -10,7 +10,9 @@ const router = express.Router();
 //la route (endpoint) signup
 router.post("/signup", password, userController.signup);
 
-//la route login
+//la route (endpoint) login
+router.post("/login", userController.login);
+
 
 
 

@@ -18,7 +18,8 @@ exports.signup = (req, res, next) => {
         const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();
 
         // hash du password avant de l'envoyer dans la db
-        bcrypt.hash(req.body.password, 10) // 10 = salt = nombre de fois hash algorithme
+        bcrypt
+        .hash(req.body.password, 10) // 10 = salt = nombre de fois hash algorithme
         .then(hash => {
             const user = new User({
             email: emailCryptoJs,
@@ -29,5 +30,47 @@ exports.signup = (req, res, next) => {
             .catch(error => res.status(400).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
+};
+
+//login pour chercher et connect un user qui est dans la base de donnée
+
+exports.login = (req, res, next) => {
+    console.log("--> Contenu login: req.body.email ");
+    console.log(req.body.email);
+
+    console.log("--> Contenu login: req.body.email ");
+    console.log(req.body.password);
+
+    //chiffrer l'email de la requete
+    const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CRYPTOJS_EMAIL}`).toString();
+
+    // chercher dans la base de donnée si l'utlisateur est présent
+    User.findOne({ email: emailCryptoJs })
+
+    // si le mail de l'user n'est pas présent, il n'existe pas
+    .then((user) => {
+        if (!user) {
+            return res.status(401).json({error : "Utilisateur inexistant"})
+        }
+        //controler la validité du password envoyer par le front
+        bcrypt
+            .compare(req.body.password, user.password)
+            .then((controlPassword) => {
+                console.log("controlPassword");
+                console.log(controlPassword);
+
+                if (!controlPassword) {
+                    return res.status(401).json({error : "Le mot de passe est incorrect"})
+                }
+            })
+
+            .catch(error => res.status(500).json({ error }));
+    })
+
+
+
+    .catch(error => res.status(500).json({ error }));
+
+
 };
 
