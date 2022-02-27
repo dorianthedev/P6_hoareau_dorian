@@ -10,6 +10,7 @@ const mongoose = require('./db/db');
 
 //importation des routes
 const userRoutes = require('./routes/user')
+const saucesRoutes = require('./routes/sauces')
 
 //-----------------------------------------//
 
@@ -44,6 +45,9 @@ app.use(bodyParser.json());
 // La route authentification (auth)
 // api/auth = uri = route générale
 app.use('/api/auth', userRoutes);
+
+// la route ajout de sauces
+app.use('/api/sauces', saucesRoutes)
 
 
 // exportation de app.js pour y accéder depuis un autre fichier
