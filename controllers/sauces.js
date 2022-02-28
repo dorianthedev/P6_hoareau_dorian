@@ -5,11 +5,6 @@ const Sauce = require('../models/Sauces')
 
 ///
 exports.createSauce = (req, res, next) => {
-    console.log("-----> Controllers/sauces req.body");
-    console.log(req.body);
-
-    console.log("-----> Controllers/sauces req.body.sauce");
-    console.log(req.body.sauce);
 
     // pas besoin d'utiliser un json.parse
     const sauceObject = req.body.sauce
@@ -18,8 +13,6 @@ exports.createSauce = (req, res, next) => {
     const sauce = new Sauce ({
         ...sauceObject
     })
-    console.log("contenu du new models de sauce");
-    console.log(sauce);
 
     // enregister l'objet dans la base de donnée
     sauce
@@ -44,4 +37,16 @@ exports.getAllSauce = (req, res, next) => {
 
 exports.getOneSauce = (req, res, next) => {
     console.log("route getONE");
+    console.log(req.params.id);  
+    console.log({ _id : req.params.id});  
+
+    // res.status(200).json({
+    //     message: "ok",
+    //     contenu: { _id : req.params.id}
+    // })
+
+    Sauce
+    .findOne({ _id : req.params.id})
+    .then((lObjet) => res.status(200).json(lObjet))
+    .catch((error) => res.status(404).json({error}))
 }
