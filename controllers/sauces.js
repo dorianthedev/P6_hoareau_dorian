@@ -33,3 +33,15 @@ exports.createSauce = (req, res, next) => {
     .catch((error) => res.status(400).json({error}))
 
 }
+
+
+exports.getAllSauce = (req, res, next) => {
+    Sauce
+    .find()
+    .then((toutesLesSauces) => res.status(200).json(toutesLesSauces))
+    .catch((error) => res.status(400).json({error}))
+}
+
+exports.getOneSauce = (req, res, next) => {
+    console.log("route getONE");
+}

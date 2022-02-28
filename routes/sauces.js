@@ -8,7 +8,11 @@ const saucesController = require("../controllers/sauces")
 const router = express.Router();
 
 // les routes
-router.post('/creationsauces', saucesController.createSauce)
+router.post('/', saucesController.createSauce); // créer une sauce
+
+router.get('/', saucesController.getAllSauce); // afficher tout les objets
+
+router.get('/:id', saucesController.getOneSauce); // afficher une sauce unique avec id
 
 
 

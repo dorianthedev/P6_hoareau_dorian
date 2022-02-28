@@ -15,3 +15,11 @@ http://localhost:3000/api/auth/login
 
 ## Pour l'ajout de sauces
 http://localhost:3000/api/sauces/creationsauces
+
+## Route GET pour afficher toute les sauces
+http://localhost:3000/api/sauces/
+
+
+## ## Route GET pour afficher UNE sauce
+http://localhost:3000/api/sauces/:id
+
