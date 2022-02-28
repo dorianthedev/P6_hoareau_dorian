@@ -12,10 +12,11 @@ router.post('/', saucesController.createSauce); // créer une sauce
 
 router.get('/', saucesController.getAllSauce); // afficher tout les objets
 
-router.get('/:id', saucesController.getOneSauce); // afficher une sauce unique avec id
+router.get('/:id', saucesController.getOneSauce); // afficher une sauce unique grâce à son id
 
-router.put('/:id', saucesController.updateOneSauce)
+router.put('/:id', saucesController.updateOneSauce) // modifier une sauce grâce à son id
 
+router.delete('/:id', saucesController.deleteOneSauce) // supprimer une sauce grâce à son id
 
 
 // exportation du module

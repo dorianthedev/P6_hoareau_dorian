@@ -36,7 +36,6 @@ exports.getAllSauce = (req, res, next) => {
 }
 
 exports.getOneSauce = (req, res, next) => {
-     
 
     Sauce
     .findOne({ _id : req.params.id})
@@ -53,7 +52,17 @@ exports.updateOneSauce = (req, res, next) => {
     console.log(req.body);  
 
     // modification qui seront envoyé dnas la base de donnée
-    Sauce.updateOne( { _id : req.params.id}, {...req.body, _id : req.params.id} )
+    Sauce
+    .updateOne( { _id : req.params.id}, {...req.body, _id : req.params.id} )
     .then(() => res.status(200).json({message:"l'objet à été modifié"}))
+    .catch(error => res.status(400).json({error}))
+}
+
+exports.deleteOneSauce = (req, res, next) => {
+
+    // delete product dnas la base de donnée
+    Sauce
+    .deleteOne( { _id : req.params.id} )
+    .then(() => res.status(200).json({message:"l'objet à été supprimé"}))
     .catch(error => res.status(400).json({error}))
 }
