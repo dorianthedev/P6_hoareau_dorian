@@ -36,17 +36,24 @@ exports.getAllSauce = (req, res, next) => {
 }
 
 exports.getOneSauce = (req, res, next) => {
-    console.log("route getONE");
-    console.log(req.params.id);  
-    console.log({ _id : req.params.id});  
-
-    // res.status(200).json({
-    //     message: "ok",
-    //     contenu: { _id : req.params.id}
-    // })
+     
 
     Sauce
     .findOne({ _id : req.params.id})
     .then((lObjet) => res.status(200).json(lObjet))
     .catch((error) => res.status(404).json({error}))
+}
+
+exports.updateOneSauce = (req, res, next) => {
+    console.log("route updateONE");
+    console.log(req.params.id);  
+    console.log({ _id : req.params.id}); 
+
+    console.log("route req.body");
+    console.log(req.body);  
+
+    // modification qui seront envoyé dnas la base de donnée
+    Sauce.updateOne( { _id : req.params.id}, {...req.body, _id : req.params.id} )
+    .then(() => res.status(200).json({message:"l'objet à été modifié"}))
+    .catch(error => res.status(400).json({error}))
 }

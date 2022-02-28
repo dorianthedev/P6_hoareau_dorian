@@ -14,6 +14,8 @@ router.get('/', saucesController.getAllSauce); // afficher tout les objets
 
 router.get('/:id', saucesController.getOneSauce); // afficher une sauce unique avec id
 
+router.put('/:id', saucesController.updateOneSauce)
+
 
 
 // exportation du module
