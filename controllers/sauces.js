@@ -7,7 +7,7 @@ const Sauce = require('../models/Sauces')
 exports.createSauce = (req, res, next) => {
 
     // pas besoin d'utiliser un json.parse
-    const sauceObject = req.body.sauce
+    const sauceObject = req.body
 
     //l'instance de sauce
     const sauce = new Sauce ({

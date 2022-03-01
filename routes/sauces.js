@@ -7,16 +7,19 @@ const saucesController = require("../controllers/sauces")
 // la fonction router()
 const router = express.Router();
 
+// iportation middleware d'authentification
+const authentification = require('../middleware/authentification');
+
 // les routes
-router.post('/', saucesController.createSauce); // créer une sauce
+router.post('/',authentification, saucesController.createSauce); // créer une sauce
 
-router.get('/', saucesController.getAllSauce); // afficher tout les objets
+router.get('/',authentification, saucesController.getAllSauce); // afficher tout les objets
 
-router.get('/:id', saucesController.getOneSauce); // afficher une sauce unique grâce à son id
+router.get('/:id',authentification, saucesController.getOneSauce); // afficher une sauce unique grâce à son id
 
-router.put('/:id', saucesController.updateOneSauce) // modifier une sauce grâce à son id
+router.put('/:id',authentification, saucesController.updateOneSauce) // modifier une sauce grâce à son id
 
-router.delete('/:id', saucesController.deleteOneSauce) // supprimer une sauce grâce à son id
+router.delete('/:id',authentification, saucesController.deleteOneSauce) // supprimer une sauce grâce à son id
 
 
 // exportation du module
