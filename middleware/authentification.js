@@ -31,6 +31,9 @@ module.exports = (req, res, next) => {
 
     // si il y a des erreurs dans le try on les récupères dans le catch
     } catch (error) {
-        res.status(401).json({error});
+        res.status(401).json({
+            message: "echec d'authentification",
+            error : error
+        });
     }
 }
