@@ -1,7 +1,7 @@
 //importation de jsonwebtoken
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-
+const result = dotenv.config();
 //exportation de la fonction du middleware
 
 module.exports = (req, res, next) => {
@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
         // et comparé avec le userId non chiffré
         const userIdDecodedToken = decodedToken.userId;
        
-
+        
         //comparaison du userId qu'il y a en clair dans le req avec le userId qu'il y a dans le token
 
         if (req.body.userId && req.body.userId !== userIdDecodedToken) {
