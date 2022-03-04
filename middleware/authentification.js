@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
       req.auth = { userId };  
       if (req.body.userId && req.body.userId !== userId) {
         throw 'Invalid user ID';
+        
       } else {
         next();
       }
@@ -46,6 +47,8 @@ module.exports = (req, res, next) => {
 
 //         console.log("re.original url-----------");
 //         console.log(req.originalUrl);
+//               req.auth = { userIdDecodedToken};  
+
 
 //         userIdParamsUrl = req.originalUrl.split("=")[1];
 //         console.log("affichage de l'id-----------");
