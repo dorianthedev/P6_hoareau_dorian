@@ -28,6 +28,7 @@ const bodyParser = require('body-parser')
 app.use(morgan('dev'));
 
 // debugger mongoose //
+console.log("----> debugger mongoose");
 mongoose.set('debug', true);
 
 

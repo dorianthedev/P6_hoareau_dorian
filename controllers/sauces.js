@@ -10,22 +10,13 @@ exports.createSauce = (req, res, next) => {
 
     // Besoin d'utiliser un json.parse
     const sauceObject = JSON.parse(req.body.sauce);
-    console.log(sauceObject);
-
-    console.log("----> Pour fabriquer l'url de l'image");
-    console.log(req.protocol);
-    console.log(req.get("host"));
-    console.log(req.file.filename);
-
-
     //l'instance de sauce
     const sauce = new Sauce ({
         ...sauceObject,
         imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
     })
 
-    console.log("ficher usssssser")
-    console.log(sauce);
+
     // enregister l'objet dans la base de donnée
     sauce
     .save()
