@@ -8,6 +8,10 @@ const morgan = require('morgan');
 //importation fichiers db pour connexion base de donnée mongoDB avec package mongoose
 const mongoose = require('./db/db');
 
+// importation path
+const path = require('path');
+
+
 //importation des routes
 const userRoutes = require('./routes/user')
 const saucesRoutes = require('./routes/sauces')
@@ -48,6 +52,9 @@ app.use('/api/auth', userRoutes);
 
 // la route ajout de sauces
 app.use('/api/sauces', saucesRoutes)
+
+//pour accéder aux images du dossier images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 // exportation de app.js pour y accéder depuis un autre fichier

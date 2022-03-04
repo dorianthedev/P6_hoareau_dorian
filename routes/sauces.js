@@ -10,14 +10,17 @@ const router = express.Router();
 // iportation middleware d'authentification
 const authentification = require('../middleware/authentification');
 
+//importation multer pour la gestion d'images
+const multer =  require('../middleware/multer');
+
 // les routes
-router.post('/',authentification, saucesController.createSauce); // créer une sauce
+router.post('/',authentification, multer, saucesController.createSauce); // créer une sauce
 
 router.get('/',authentification, saucesController.getAllSauce); // afficher tout les objets
 
 router.get('/:id',authentification, saucesController.getOneSauce); // afficher une sauce unique grâce à son id
 
-router.put('/:id',authentification, saucesController.updateOneSauce) // modifier une sauce grâce à son id
+router.put('/:id',authentification, multer, saucesController.updateOneSauce) // modifier une sauce grâce à son id
 
 router.delete('/:id',authentification, saucesController.deleteOneSauce) // supprimer une sauce grâce à son id
 
