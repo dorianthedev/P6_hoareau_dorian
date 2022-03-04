@@ -4,6 +4,9 @@ const express = require('express')
 // importation du controllers/sauces.js
 const saucesController = require("../controllers/sauces")
 
+// imporation du controller/like.js
+const like = require("../controllers/like")
+
 // la fonction router()
 const router = express.Router();
 
@@ -24,6 +27,7 @@ router.put('/:id',authentification, multer, saucesController.updateOneSauce) // 
 
 router.delete('/:id',authentification, saucesController.deleteOneSauce) // supprimer une sauce grâce à son id
 
+router.post('/:id/like',authentification, like.likeSauce)
 
 // exportation du module
 module.exports = router;

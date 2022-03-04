@@ -24,3 +24,7 @@ http://localhost:3000/api/sauces/:id
 
 ## Route PUT pour modifier un objet qui a été sélectionné par son _id
 http://localhost:3000/api/sauces/:id
+
+
+## Route POST like
+http://localhost:3000/api/sauces/:id/like
