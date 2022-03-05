@@ -8,8 +8,19 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true }
 });
 
+
 //sécurité  conseillé pour ne pas avoir 2 fois la meme adresse mail
 userSchema.plugin(uniqueValidator);
 
 // exportation du model
 module.exports = mongoose.model('User', userSchema);
+
+
+// requie pour s'inscrire 
+//1 mail et 1 mdp // Minimum length 8
+                  // Maximum length 100
+                  // Must have uppercase letters
+                  // Must have lowercase letters
+                  // Must have at least 2 digits
+                  // Should not have spaces
+                  // Blacklist these values

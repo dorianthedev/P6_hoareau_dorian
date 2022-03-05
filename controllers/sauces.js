@@ -6,8 +6,6 @@ const fs = require('fs');
 
 exports.createSauce = (req, res, next) => {
 
-        
-
     // Besoin d'utiliser un json.parse
     const sauceObject = JSON.parse(req.body.sauce);
     //l'instance de sauce
@@ -62,8 +60,6 @@ exports.updateOneSauce = (req, res, next) => {
 }
 
 exports.deleteOneSauce = (req, res, next) => {
-
-
 
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {

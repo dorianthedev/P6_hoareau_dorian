@@ -1,5 +1,10 @@
 # backend
 Pour lancer le server = nodemon server
+# frontend
+Pour lancer le front = npm run start
+
+# Front error
+Si une error s'affiche dès le lancement veuillez relancer le front et le server
 
 # exeplication fichier .env.example
 supprimer le .example

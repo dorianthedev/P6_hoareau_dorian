@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // La route authentification (auth)
-// api/auth = uri = route générale
+// api/auth = uri = uri + endpoint = route générale
 app.use('/api/auth', userRoutes);
 
 // la route ajout de sauces
