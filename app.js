@@ -21,9 +21,6 @@ const saucesRoutes = require('./routes/sauces')
 // pour créer une application express
 const app = express();
 
-//importation de body-parser
-const bodyParser = require('body-parser')
-
 // logger les requetes et les reponses
 app.use(morgan('dev'));
 
@@ -44,8 +41,7 @@ app.use((req, res, next) => {
 });
 
 //transformer le corps (body) en json objet javascript réutilisables
-app.use(bodyParser.json());
-
+app.use(express.json());
 
 // La route authentification (auth)
 // api/auth = uri = route générale
