@@ -63,14 +63,29 @@ exports.deleteOneSauce = (req, res, next) => {
 
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
-      const filename = sauce.imageUrl.split('/images/')[1];
-      
-      // supprime l'image de notre server aussi
-      fs.unlink(`images/${filename}`, () => {
-        Sauce.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
-          .catch(error => res.status(400).json({ error }));
-      });
-    })
-    .catch(error => res.status(500).json({ error }));
-};
+        console.log(sauce);
+        console.log(sauce.userId);
+        console.log(req.originalUrl);
+        userIdParamsUrl = req.originalUrl.split("=")[1];
+        console.log("affichage de l'id");
+        console.log(userIdParamsUrl);
+
+        if (userIdParamsUrl === sauce.userId) {
+            const filename = sauce.imageUrl.split('/images/')[1];
+
+            // supprime l'image de notre server aussi
+
+            fs.unlink(`images/${filename}`, () => {
+            Sauce.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+            .catch(error => res.status(400).json({ error }));
+        });
+
+            
+        } else {
+            throw "requete non autorisé"
+        }
+        
+        })
+        .catch(error => res.status(500).json({ error }));
+    };
