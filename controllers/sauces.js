@@ -53,6 +53,7 @@ exports.updateOneSauce = (req, res, next) => {
       imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };
 
+    
     Sauce
     .updateOne( { _id : req.params.id}, {...sauceObject, _id : req.params.id} )
     .then(() => res.status(200).json({message:"l'objet à été modifié"}))
@@ -86,6 +87,6 @@ exports.deleteOneSauce = (req, res, next) => {
             throw "requete non autorisé"
         }
         
-        })
+    })
         .catch(error => res.status(500).json({ error }));
-    };
+};
