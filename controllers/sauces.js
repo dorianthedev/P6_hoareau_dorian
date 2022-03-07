@@ -58,11 +58,11 @@ exports.updateOneSauce = (req, res, next) => {
 
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
-        // const token = req.headers.authorization.split(' ')[1];
-        // const decodedToken = jwt.verify(token, `${process.env.JWT_KEY_TOKEN}`);        
-        // const userId = decodedToken.userId;
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, `${process.env.JWT_KEY_TOKEN}`);        
+        const userId = decodedToken.userId;
 
-        if (req.auth) {
+        if (userId === sauce.userId) {
 
             Sauce
             .updateOne( { _id : req.params.id}, {...sauceObject, _id : req.params.id} )
@@ -90,12 +90,13 @@ exports.deleteOneSauce = (req, res, next) => {
         console.log("--------sauce");
         console.log(sauce);
 
-        // const token = req.headers.authorization.split(' ')[1];
-        // const decodedToken = jwt.verify(token, `${process.env.JWT_KEY_TOKEN}`);        
-        // const userId = decodedToken.userId;
-        // userId === sauce.userId
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, `${process.env.JWT_KEY_TOKEN}`);        
+        const userId = decodedToken.userId;
 
-        if (req.auth) {
+        
+
+        if (userId === sauce.userId) {
             const filename = sauce.imageUrl.split('/images/')[1];
 
             // supprime l'image de notre server aussi
