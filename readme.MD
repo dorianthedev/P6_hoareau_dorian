@@ -1,4 +1,3 @@
-1. Clonez le repository
 3. Exécutez npm install à partir du répertoire du projet
 4. Exécutez nodemon server pour démarrer le backend
 5. Exécutez le back-end sur http://localhost:3000 seulement
